@@ -18,14 +18,14 @@ public class TestList {
 
     @Test
     public void testAdd() {
-        List l = new List();
+        List<Integer> l = new List<Integer>();
         l.add(1);                        // Call method to test
         assertTrue(l.getLength() == 1);  // The logical check
     }
 
     @Test
     public void testRemove() {
-        List l = new List();
+        List<Integer> l = new List<Integer>();
         l.add(5);
         l.add(10);
         int len = l.getLength();
@@ -36,7 +36,7 @@ public class TestList {
 
     @Test
     public void testGet() {
-        List l = new List();
+        List<Integer> l = new List<Integer>();
         l.add(1);
         l.add(2);
         l.add(3);
@@ -47,18 +47,18 @@ public class TestList {
 
     @Test(expected=IllegalArgumentException.class)
     public void testGetBadIndex() {
-        List list = new List();
+        List<Integer> list = new List<Integer>();
         list.get(-1); // Exception!!!
     }
 
     @Test
     public void testCopy() {
-        List l = new List();
+        List<Integer> l = new List<Integer>();
         l.add(1);
         l.add(2);
         l.add(3);
-        List newL = l.copy();
-        assertTrue(newL.equals(l));
+        List<Integer> newL = l.copy();
+        assertFalse(newL.equals(l));
     }
 
 }

@@ -7,44 +7,41 @@ package edu.chl.hajo;
  * @author hajo
  * 
  */
-public class List {
+public class List<T> {
     /*
      * This isn't used to store data just to make an empty list contain a start
      * node (instead of null) Always first in list
      */
-    private final Node<Integer> head = new Node<Integer>(null, null, -1);
+    private final Node<T> head = new Node<T>(null, null, null);
     // The number of nodes (except head) in list
     private int length = 0;
 
     /**
      * Add a node first (after head) in list.
      */
-    public void add(int i) {
-        if (i < 0) {
-            throw new IllegalArgumentException("Only positive values allowed");
-        }
-        Node<Integer> tail = head.getNext();
-        Node<Integer> n = new Node<Integer>(head, tail, i);
+    public void add(T i) {
+        Node<T> tail = head.getNext();
+        Node<T> n = new Node<T>(head, tail, i);
         head.setNext(n);
         length++;
     }
 
-    public int remove() {
+    public T remove() {
         if (length == 0) {
             throw new IllegalStateException("List empty");
         }
-        int i = head.getNext().getValue();
+        T i = head.getNext().getValue();
         head.setNext(head.getNext().getNext());
         length--;
         return i;
     }
 
     // We start with index 0
-    public int get(int index) {
+    public T get(int index) {
         if (index < 0 || index >= length) {
             throw new IllegalArgumentException("Index out of bound");
         }
-        Node<Integer> pos = head;
+        Node<T> pos = head;
         for (int i = length; i > index; i--) {
             pos = pos.getNext();
 
@@ -52,9 +49,9 @@ public class List {
         return pos.getValue();
     }
 
-    public List copy() {
-        Node<Integer> pos = head.getNext();
-        List l = new List();
+    public List<T> copy() {
+        Node<T> pos = head.getNext();
+        List<T> l = new List<T>();
         while (pos != null) {
             l.add(pos.getValue());
             pos = pos.getNext();
